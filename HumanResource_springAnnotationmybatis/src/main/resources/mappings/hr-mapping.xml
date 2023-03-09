@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="HrDAO">
+
+	<resultMap id="hrResult" type="hr">
+		<id property="seq" column="SEQ" />
+		<result property="name" column="NAME" />
+		<result property="birt" column="BIRT" />
+		<result property="hrdt" column="HRDT" />
+		<result property="sung" column="SUNG" />
+		<result property="addr" column="ADDR" />
+		<result property="tele" column="TELE" />
+		<result property="dept" column="DEPT" />
+	</resultMap>
+
+	<insert id="insertHr" parameterType="hr">
+		<![CDATA[
+			INSERT INTO HR(SEQ, NAME, BIRT, HRDT, SUNG, ADDR, TELE, DEPT)
+			VALUES ((SELECT NVL(MAX(seq), 0)+1 FROM HR), #{name}, #{birt}, #{hrdt}, #{sung}, #{addr}, #{tele}, #{dept})
+		]]>
+	</insert>
+
+	<update id="updateHr" parameterType="hr">
+		<![CDATA[
+			UPDATE HR
+			SET NAME=#{name}, BIRT=#{birt}, HRDT=#{hrdt}, SUNG=#{sung}, ADDR=#{addr}, TELE=#{tele}, DEPT=#{dept}
+			WHERE SEQ=#{seq}
+		]]>
+	</update>
+
+	<delete id="deleteHr" parameterType="hr">
+		<![CDATA[
+			DELETE FROM HR
+			WHERE SEQ=#{seq}
+		]]>
+	</delete>
+
+	<select id="getHr" resultType="hr">
+		<![CDATA[
+			SELECT *
+			FROM HR
+			WHERE SEQ=#{seq}
+		]]>
+	</select>
+
+	<select id="getHrList" resultMap="hrResult">
+		<![CDATA[
+			SELECT *
+			FROM HR
+			ORDER BY SEQ DESC
+		]]>
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
