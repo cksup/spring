@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<!-- Alias 설정 -->
+	<typeAliases>
+		<typeAlias alias="hr" type="com.mvc.biz.hr.HrVO"/>
+	</typeAliases>
+	
+	<!-- SQL Mapper 등록 -->
+	<mappers>
+		<mapper resource="mappings/hr-mapping.xml"/>
+	</mappers>	
+	
+</configuration>
